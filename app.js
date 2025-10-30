@@ -37,9 +37,12 @@ app.get("/posts",(req,res)=>{
     res.sendFile(path.join(__dirname, "views/posts.html"))
 })*/
 
-const router = require("./router/router.js")
+//middlewheres
+const router = require("./router/router.js")//router entre paginas
     app.use("/", router)
 
+const posts = require("./router/post.js")
+    app.use("/", posts)
 
 app.get("/",(req, res)=>{
         res.sendFile(path.join(__dirname, "views/index.html"))

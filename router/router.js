@@ -9,12 +9,16 @@ router.use(express.json())
 router.use(express.urlencoded({extended: true}))
 
 
-
-
+//login
+router.get("/login",(req, res)=>{
+    res.sendFile(path.join(__dirname,"..", "views/login.html"))
+})
+//posts
 router.get("/posts",(req,res)=>{
     res.sendFile(path.join(__dirname, "..", "views/posts.html"))
    
 })
+
 
 // ROTA NOVA: Cria a tabela "posts" no banco de dados Neon
 router.get("/create-table", async (req, res) => {
@@ -23,7 +27,8 @@ router.get("/create-table", async (req, res) => {
         CREATE TABLE IF NOT EXISTS posts (
             id SERIAL PRIMARY KEY,
             titulo VARCHAR(255) NOT NULL,
-            texto TEXT
+            texto TEXT,
+            autor VARCHAR(100)
         );
     `;
 
