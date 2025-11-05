@@ -10,7 +10,7 @@ router.use(express.urlencoded({extended: true}))
 router.post("/postpost", async (req, res)=>{
     //id = "ola"
     const titulo = req.body.titulo
-    const texto = req.body.texto //aaa
+    const texto = req.body.texto 
     const autor = req.body.autor
 
     const sql =  `INSERT INTO posts (titulo, texto , autor) VALUES ($1, $2, $3);`

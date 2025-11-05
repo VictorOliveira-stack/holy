@@ -1,8 +1,10 @@
 const express = require("express")
-const app = express()
 const path = require("path")
+const fs = require('fs').promises;
 const router = express.Router()
-const db = require("../db.js")
+const db = require("../db.js");
+const { Result } = require("pg");
+
 
 
 router.use(express.json())
@@ -50,6 +52,53 @@ router.get("/create-table", async (req, res) => {
         });
     }
 });
+
+
+//renderizar os posts
+
+
+    //essa rota funcionado, use ela pra renderizar dentro da parte do crud quando for renderizar em outra
+    //pag html nao na index
+        /*router.get("/renderizar", async (req, res) => {
+            try {
+                const sqlQuery = 'SELECT titulo, texto FROM posts';
+                const result = await db.query(sqlQuery);
+        
+                const results = result.rows || result; // compatível com pg ou mysql
+                console.log("✅ Resultados do banco:", results);
+        
+                let tableRows = "";
+                results.forEach(row => {
+                    tableRows += `
+                        <tr>
+                            <td>${row.titulo}</td>
+                            <td>${row.texto}</td>
+                        </tr>
+                    `;
+                });
+        
+                const htmlFilePath = path.join(__dirname, "..", "views", "index.html");
+                console.log("📄 Lendo arquivo:", htmlFilePath);
+        
+                const htmlTemplate = await fs.readFile(htmlFilePath, 'utf8');
+
+             
+        
+                // usar regex pra garantir substituição mesmo com espaços
+                const renderizarHtml = htmlTemplate.replace(/\*\*##sql_data_rows##\*\*/ /*g, tableRows);*/
+        
+                //res.setHeader('Content-Type', 'text/html');
+                //res.send(renderizarHtml);
+        
+           // }catch (error) {
+           //    console.error('❌ Erro ao renderizar:', error);
+           //     res.status(500).send('Erro interno do servidor.');
+         //   }
+       // });*/
+
+
+ 
+
 
 
 
