@@ -13,6 +13,7 @@ app.use(express.urlencoded({extended: true}))
 
 
 //middlewheres
+
 const router = require("./router/router.js")//router entre paginas
     app.use("/", router)
 
@@ -34,9 +35,9 @@ const posts = require("./router/post.js")
             results.forEach(row => {
                 tableRows += `
                     <tr>
-                        <td>${row.titulo}</td>
-                        <td>${row.texto}</td>
-                        <th>${row.autor}</th>
+                        <th>${row.titulo}</th> 
+                        <td>${row.texto}</td> 
+                        <td>${row.autor}</td> 
                     </tr>
                 `;
             });
@@ -54,7 +55,7 @@ const posts = require("./router/post.js")
             res.setHeader('Content-Type', 'text/html');
             res.send(renderizarHtml);
     
-            res.sendFile(path.join(__dirname, "views/index.html"))
+            res.sendFile(path.join(__dirname, "..", "views/index.html"))
     
         }catch (error) {
            console.error('❌ Erro ao renderizar:', error);
@@ -63,6 +64,8 @@ const posts = require("./router/post.js")
     
             
     })
+
+    
 
 
 
